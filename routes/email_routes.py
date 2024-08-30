@@ -4,7 +4,6 @@ import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from threading import Thread
-
 import openpyxl
 import PyPDF2
 from flask import Blueprint, request
