@@ -6,7 +6,5 @@ python-docx
 openpyxl
 PyPDF2
 moviepy
-./PyAudio-0.2.14-cp312-cp312-win_amd64.whl
 pyautogui
 Werkzeug==2.2.2
-pyaudio==0.2.14
