@@ -7,7 +7,6 @@ from threading import Thread
 
 import openpyxl
 import PyPDF2
-from docx import Document
 from flask import Blueprint, request
 
 email_routes = Blueprint('email_routes', __name__)
