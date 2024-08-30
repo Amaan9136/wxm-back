@@ -8,3 +8,4 @@ PyPDF2
 moviepy
 pyaudio
 pyautogui
+Werkzeug==2.2.2
