@@ -6,6 +6,6 @@ python-docx
 openpyxl
 PyPDF2
 moviepy
-pyaudio
+pyaudio==0.2.12
 pyautogui
 Werkzeug==2.2.2
