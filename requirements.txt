@@ -1,2 +1,10 @@
-Flask==2.0.1
-Werkzeug==2.2.2
+Flask
+Flask-CORS
+python-dotenv
+google-generativeai
+python-docx
+openpyxl
+PyPDF2
+moviepy
+pyaudio
+pyautogui
