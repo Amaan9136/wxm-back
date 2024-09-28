@@ -1,0 +1,60 @@
+cd D:\0 AMAAN MAIN\0 Codes\My NextJS\NextJS-Template1\backend\...
+
+file "Social_Network_Ads.csv"
+features 0 1
+target 2 
+split 0.2
+model "linear_regression"
+print_predict
+print_accuracy
+plot_data
+plot_predict
+save_model "model.pkl"
+
+// also add to download the "model.pkl" if you want in flask's interface
+
+// single command:
+file "Social_Network_Ads.csv" features 0 2 target 3 4 split 0.2 model "linear_regression" print_predict save_model "model.pkl"
+
+// arguments
+model "svc" C=1.0
+model "polynomial_regression" degree=3
+model "ridge_regression" alpha=0.5
+model "svc" C=10.0 kernel=rbf gamma=scale
+model "svc" C=2.0 kernel=linear
+model "knn" n_neighbors=8 metric=euclidean
+model "lasso_regression" alpha=0.1 max_iter=1000
+model "naive_bayes" 
+model "svr" C=0.5 kernel=linear epsilon=0.1
+
+// target take the column index (not range)
+target 2 
+target 2 3
+target 2 5
+
+// features take the range (column index)
+features 0
+features 0 3
+features 0 2
+
+// encoding
+encode_features label=1
+---means label encode the column 1
+
+encode_features label= 1,2
+---means label encode the column 1 and 2
+
+encode_features label=1 onehot = 2,3
+---means label encode the column 1 and onehot for col  and 3
+
+// code to do label encoding
+file "Mall_Customers.csv"
+features 1
+target 3
+encode_features label=1
+split 0.3
+model "svr"
+print_predict
+
+// make models to make predictions by model_predict
+model_predict "my_model" [[1, 2], [3, 4], [5, 6]]
