@@ -5,7 +5,7 @@ from flask import Blueprint, jsonify, request
 
 api_model_bp = Blueprint('api_model_bp', __name__)
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_api_data/')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/')
 
 def generate_api_key(name, length=24):
     # Take the first three letters from the name

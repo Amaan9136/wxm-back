@@ -3,7 +3,7 @@ import os
 
 send_files_bp = Blueprint('send_files', __name__)
 
-STORE_MUL_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_mulcmd_data/uploads/')
+STORE_MUL_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_mulcmd_data/uploads/')
 
 @send_files_bp.route('/get_file/<filename>', methods=['GET'])
 def get_file(filename):

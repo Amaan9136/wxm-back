@@ -1,4 +1,4 @@
-# backend/routes/run_mulcmd.py
+# mul_routes/run_mulcmd.py
 
 from flask import Blueprint, request, jsonify
 from .store_mulcmd_data.mul_cmd import MulCmd
@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 
 run_mulcmd_bp = Blueprint('run_mulcmd', __name__)
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_mulcmd_data/uploads/')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_mulcmd_data/uploads/')
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 ALLOWED_EXTENSIONS = {'csv'}
 

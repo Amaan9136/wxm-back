@@ -6,8 +6,8 @@ import re
 
 # CHANGE PYTHON_ENV FOR THE LOCAL PYTHON 
 PYTHON_PATH = "backend/python_env/python.exe"
-VARIABLES_FILE = 'backend/routes/store_python_data/variables.json'
-FUNCTIONS_FILE = 'backend/routes/store_python_data/functions.py'
+VARIABLES_FILE = 'mul_routes/store_python_data/variables.json'
+FUNCTIONS_FILE = 'mul_routes/store_python_data/functions.py'
 
 run_python_bp = Blueprint('run_python', __name__)
 
