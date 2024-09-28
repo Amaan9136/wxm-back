@@ -4,8 +4,7 @@ import json
 import os
 import re
 
-# CHANGE PYTHON_ENV FOR THE LOCAL PYTHON 
-PYTHON_PATH = "backend/python_env/python.exe"
+# Define constants for file paths
 VARIABLES_FILE = 'mul_routes/store_python_data/variables.json'
 FUNCTIONS_FILE = 'mul_routes/store_python_data/functions.py'
 
@@ -50,8 +49,8 @@ def execute_code(code):
     full_code = f"{load_vars_code}\n{functions}\n{code}"
 
     try:
-        # Execute the code in a subprocess
-        process = subprocess.Popen([PYTHON_PATH, '-c', full_code], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Execute the code using the default Python interpreter in Vercel
+        process = subprocess.Popen(['python3', '-c', full_code], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         output, error = process.communicate()
 
         if error:
@@ -96,7 +95,7 @@ def extract_function_name(func_code):
     return match.group(1) if match else ""
 
 # Blueprint routes
-@run_python_bp.route('/run_python', methods=['POST'])
+@run_python_bp.route('/api/run_python', methods=['POST'])
 def run_code():
     code = request.form.get('code', '')
 
@@ -104,7 +103,7 @@ def run_code():
 
     return jsonify({'output': output})
 
-@run_python_bp.route('/run_all_python', methods=['POST'])
+@run_python_bp.route('/api/run_all_python', methods=['POST'])
 def run_all_code():
     cells = request.form.get('cells', '[]')
     cells = json.loads(cells)
