@@ -10,8 +10,8 @@ from flask import Blueprint, request
 
 email_routes = Blueprint('email_routes', __name__)
 
-UPLOAD_FOLDER = 'backend/uploads'
-OUTPUT_FOLDER = 'backend/routes'
+UPLOAD_FOLDER = 'wxm_routes/uploads'
+OUTPUT_FOLDER = 'wxm_routes'
 EMAIL_FILE = os.path.join(OUTPUT_FOLDER, 'email.txt')
 
 def schedule_file_deletion(filepath):

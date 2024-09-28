@@ -1,0 +1,181 @@
+<h1>Mul Command Backend</h1>
+<script>
+    async function sendGetRequest(event) {
+        event.preventDefault();
+        const name = document.getElementById("getName").value;
+        const email = document.getElementById("getEmail").value;
+        const response = await fetch(`http://localhost:5000/generate_api?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`);
+        const result = await response.json();
+        document.getElementById("message").innerText = result.message;
+        document.getElementById("name").innerText = result.name; // Display the input name
+        document.getElementById("email").innerText = result.email; // Display the input email
+        document.getElementById("generated_api_key").innerText = result.generated_api_key || "N/A";
+    }
+
+    async function sendPostRequest(event) {
+        event.preventDefault();
+        const name = document.getElementById("postName").value;
+        const email = document.getElementById("postEmail").value;
+        const response = await fetch("http://localhost:5000/generate_api", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ name: name, email: email }),
+        });
+        const result = await response.json();
+        document.getElementById("message").innerText = result.message;
+        document.getElementById("name").innerText = result.name; // Display the input name
+        document.getElementById("email").innerText = result.email; // Display the input email
+        document.getElementById("generated_api_key").innerText = result.generated_api_key || "N/A";
+    }
+
+    async function sendRequestToIming(event) {
+        event.preventDefault();
+        const prompt = document.getElementById("prompt").value;
+        const role = document.getElementById("role").value;
+        const api_key = document.getElementById("api_key").value;
+
+        const formData = new FormData();
+        formData.append("prompt", prompt);
+        formData.append("role", role);
+        formData.append("api_key", api_key);
+
+
+        const response = await fetch("http://localhost:5000/request_iming", {
+            method: "POST",
+            body: formData,  // Use FormData directly
+        });
+
+        const result = await response.json();
+        document.getElementById("output").innerHTML = result.text;
+    }
+
+    async function sendRequestToVision(event) {
+        event.preventDefault();
+        const apiKey = document.getElementById('api_key_2').value;
+        const fileInput = document.getElementById('file_2');
+        const prompt = document.getElementById('prompt_2').value;
+        const role = document.getElementById('role_2').value;
+
+        if (!fileInput.files.length) {
+            console.error('No file selected');
+            document.getElementById('responseContainer').innerHTML = 'Please select a file.';
+            return;
+        }
+
+        const formData = new FormData();
+        formData.append('api_key', apiKey);
+        formData.append('prompt', prompt);
+        formData.append('role', role);
+        formData.append('file', fileInput.files[0]);
+
+        try {
+            const response = await fetch('http://localhost:5000/request_vision', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (!response.ok) {
+                const errorText = await response.text(); // Retrieve response text
+                throw new Error(`Network response was not ok: ${errorText}`);
+            }
+
+            const result = await response.json();
+            document.getElementById('responseContainer').innerHTML = result.text;
+        } catch (error) {
+            console.error('Error:', error);
+            document.getElementById('responseContainer').innerHTML = 'An error occurred while processing your request.';
+        }
+    }
+
+</script>
+
+<h1>API Test</h1>
+
+<h2>GET Request</h2>
+<form onsubmit="sendGetRequest(event)">
+    <input type="text" id="getName" placeholder="Enter name for GET" />
+    <input type="email" id="getEmail" placeholder="Enter email for GET" required />
+    <button type="submit">Send GET Request</button>
+</form>
+
+<h2>POST Request</h2>
+<form onsubmit="sendPostRequest(event)">
+    <input type="text" id="postName" placeholder="Enter name for POST" />
+    <input type="email" id="postEmail" placeholder="Enter email for POST" required />
+    <button type="submit">Send POST Request</button>
+</form>
+
+<h1>Response</h1>
+<p>Message: <span id="message"></span></p>
+<p>Name: <span id="name"></span></p>
+<p>Email: <span id="email"></span></p>
+<p>Generated API Key: <span id="generated_api_key"></span></p>
+<hr>
+
+<h1>SEND REQUEST TO IMING MODEL</h1>
+
+<h2>Send Request</h2>
+<form onsubmit="sendRequestToIming(event)">
+    <input type="text" id="prompt" placeholder="Enter prompt" />
+    <input type="text" id="role" placeholder="Enter role" />
+    <input type="text" id="api_key" placeholder="Enter API Key" required />
+    <button type="submit">Send Request</button>
+</form>
+
+<h1>Output</h1>
+<p>Response: <span id="output"></span></p>
+<hr>
+
+<h1>Upload Image and Prompt</h1>
+<form onsubmit="sendRequestToVision(event)">
+    <input type="text" id="api_key_2" name="api_key_2" placeholder="Enter API Key" required>
+    <input type="file" id="file_2" name="file_2" accept="image/*" required>
+    <input type="text" id="prompt_2" name="prompt_2" placeholder="Enter your prompt here" required>
+    <input type="text" id="role_2" name="role_2" placeholder="Enter your role here">
+    <button type="submit">Submit</button>
+</form>
+<div class="response" id="responseContainer"></div>
+
+<hr>
+
+<h1>Run MulCmd Command</h1>
+<form id="mulcmdForm" action="http://localhost:5000/run_mulcmd" method="POST" enctype="multipart/form-data"
+    onsubmit="return submitForm();">
+    <textarea id="codeInput" name="code" rows="20" placeholder="Enter your MulCmd code"></textarea><br>
+    <input type="file" id="fileInput" name="file"><br>
+    <button type="submit">Run Command</button>
+</form>
+
+<h2>Output:</h2>
+<pre id="outputText"></pre>
+
+<h2>Generated Files:</h2>
+<img src="http://localhost:5000/get_file/plot_data.png" alt="Dataset Plot">
+<img src="http://localhost:5000/get_file/plot_predict.png" alt="Prediction Plot">
+<a href="http://localhost:5000/get_file/trained_model.pkl" download>Download Model and Files</a>
+
+<script>
+    function submitForm() {
+        const form = document.getElementById('mulcmdForm');
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: 'POST',
+            body: formData
+        })
+            .then(response => {
+                if (!response.ok) throw new Error('Failed to run MulCmd command');
+                return response.json();
+            })
+            .then(result => {
+                document.getElementById('outputText').textContent = result.output;
+            })
+            .catch(error => {
+                document.getElementById('outputText').textContent = 'Error: ' + error.message;
+            });
+
+        return false;
+    }
+</script>

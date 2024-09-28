@@ -9,7 +9,7 @@ import shutil
 files_routes = Blueprint('files_routes', __name__)
 
 # Configure upload folder path
-UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '../uploads/notes/')
+UPLOAD_FOLDER = os.path.join(os.path.dirname(__file__), '/uploads/notes/')
 MAX_CONTENT_LENGTH = 10 * 1024 * 1024  # 10 MB in bytes
 
 @files_routes.route('/upload-notes', methods=['POST'])
