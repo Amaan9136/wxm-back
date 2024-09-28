@@ -1,16 +1,18 @@
 {
-    "version":2,
+    "version": 2,
     "builds": [
         {
-            "src":"./index.py",
+            "src": "wsgi.py", 
             "use": "@vercel/python",
-            "config":{"runtime":"python3.12"}
+            "config": {
+                "runtime": "python3.12" 
+            }
         }
     ],
     "routes": [
         {
-            "src":"/(.*)",
-            "dest":"/"
+            "src": "/(.*)",
+            "dest": "/wsgi.py" 
         }
     ]
 }
