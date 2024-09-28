@@ -30,7 +30,6 @@ app.register_blueprint(send_files_bp)
 app.register_blueprint(api_model_bp)
 app.register_blueprint(request_model_bp)
 
-
 @app.route('/')
 def index():
     return render_template('index.html')
