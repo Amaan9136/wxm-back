@@ -7,9 +7,7 @@ PyPDF2
 Werkzeug==2.2.2
 Pillow
 googletrans
-werkzeug
 numpy
 pandas
 scikit-learn
 matplotlib
-pickle5
