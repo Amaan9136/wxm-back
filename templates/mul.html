@@ -4,7 +4,7 @@
         event.preventDefault();
         const name = document.getElementById("getName").value;
         const email = document.getElementById("getEmail").value;
-        const response = await fetch(`http://localhost:5000/generate_api?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`);
+        const response = await fetch(`/generate_api?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}`);
         const result = await response.json();
         document.getElementById("message").innerText = result.message;
         document.getElementById("name").innerText = result.name; // Display the input name
@@ -16,7 +16,7 @@
         event.preventDefault();
         const name = document.getElementById("postName").value;
         const email = document.getElementById("postEmail").value;
-        const response = await fetch("http://localhost:5000/generate_api", {
+        const response = await fetch("/generate_api", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,7 @@
         formData.append("api_key", api_key);
 
 
-        const response = await fetch("http://localhost:5000/request_iming", {
+        const response = await fetch("/request_iming", {
             method: "POST",
             body: formData,  // Use FormData directly
         });
@@ -71,7 +71,7 @@
         formData.append('file', fileInput.files[0]);
 
         try {
-            const response = await fetch('http://localhost:5000/request_vision', {
+            const response = await fetch('/request_vision', {
                 method: 'POST',
                 body: formData
             });
@@ -141,7 +141,7 @@
 <hr>
 
 <h1>Run MulCmd Command</h1>
-<form id="mulcmdForm" action="http://localhost:5000/run_mulcmd" method="POST" enctype="multipart/form-data"
+<form id="mulcmdForm" action="/run_mulcmd" method="POST" enctype="multipart/form-data"
     onsubmit="return submitForm();">
     <textarea id="codeInput" name="code" rows="20" placeholder="Enter your MulCmd code"></textarea><br>
     <input type="file" id="fileInput" name="file"><br>
@@ -152,9 +152,9 @@
 <pre id="outputText"></pre>
 
 <h2>Generated Files:</h2>
-<img src="http://localhost:5000/get_file/plot_data.png" alt="Dataset Plot">
-<img src="http://localhost:5000/get_file/plot_predict.png" alt="Prediction Plot">
-<a href="http://localhost:5000/get_file/trained_model.pkl" download>Download Model and Files</a>
+<img src="/get_file/plot_data.png" alt="Dataset Plot">
+<img src="/get_file/plot_predict.png" alt="Prediction Plot">
+<a href="/get_file/trained_model.pkl" download>Download Model and Files</a>
 
 <script>
     function submitForm() {

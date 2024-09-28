@@ -6,7 +6,6 @@ from sklearn.metrics import mean_squared_error, accuracy_score, r2_score, mean_a
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
-# import pickle
 import os
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer

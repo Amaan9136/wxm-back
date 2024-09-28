@@ -5,10 +5,9 @@ google-generativeai
 openpyxl
 PyPDF2
 Werkzeug==2.2.2
-# Pillow
-# googletrans
+Pillow
+googletrans
 # numpy
 # pandas
 # scikit-learn
 # matplotlib
-# # pickle5 needs to be added. but its not working in vercel
