@@ -6,7 +6,7 @@ from sklearn.metrics import mean_squared_error, accuracy_score, r2_score, mean_a
 import matplotlib
 matplotlib.use('Agg') 
 import matplotlib.pyplot as plt
-import pickle
+# import pickle
 import os
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
@@ -346,42 +346,42 @@ class MulCmd:
         else:
             return "Model or test data is missing for prediction plotting."
 
-    def save_model(self, model_name):
-        if self.model is not None:
-            if not model_name.endswith('.pkl'):
-                model_name += '.pkl'
-            model_path = os.path.join(UPLOAD_FOLDER, model_name)
-            with open(model_path, 'wb') as model_file:
-                pickle.dump(self.model, model_file)
-            return model_name, f"Model saved and retrieved as as '{model_name}'"
-        else:
-            return "No model to save."
+    # def save_model(self, model_name):
+    #     if self.model is not None:
+    #         if not model_name.endswith('.pkl'):
+    #             model_name += '.pkl'
+    #         model_path = os.path.join(UPLOAD_FOLDER, model_name)
+    #         with open(model_path, 'wb') as model_file:
+    #             pickle.dump(self.model, model_file)
+    #         return model_name, f"Model saved and retrieved as as '{model_name}'"
+    #     else:
+    #         return "No model to save."
     
-    def load_model(self, model_name):
-        if not model_name.endswith('.pkl'):
-            model_name += '.pkl'
-        model_path = os.path.join(UPLOAD_FOLDER, model_name)
+    # def load_model(self, model_name):
+    #     if not model_name.endswith('.pkl'):
+    #         model_name += '.pkl'
+    #     model_path = os.path.join(UPLOAD_FOLDER, model_name)
 
-        if os.path.exists(model_path):
-            with open(model_path, 'rb') as model_file:
-                self.model = pickle.load(model_file)
-            return f"Model loaded from '{model_path}'"
-        else:
-            return f"Model file '{model_path}' not found."
+    #     if os.path.exists(model_path):
+    #         with open(model_path, 'rb') as model_file:
+    #             self.model = pickle.load(model_file)
+    #         return f"Model loaded from '{model_path}'"
+    #     else:
+    #         return f"Model file '{model_path}' not found."
 
-    def model_predict(self, model_name, predict_data):
-        self.load_model(model_name)
+    # def model_predict(self, model_name, predict_data):
+    #     self.load_model(model_name)
 
-        if self.model is None:
-            return "Failed to load model."
+    #     if self.model is None:
+    #         return "Failed to load model."
         
-        try:
-            if hasattr(self.model, 'feature_names_in_'):
-                predict_data = pd.DataFrame(predict_data, columns=self.model.feature_names_in_)
-            else:
-                predict_data = np.array(predict_data)
+    #     try:
+    #         if hasattr(self.model, 'feature_names_in_'):
+    #             predict_data = pd.DataFrame(predict_data, columns=self.model.feature_names_in_)
+    #         else:
+    #             predict_data = np.array(predict_data)
             
-            predictions = self.model.predict(predict_data)
-            return predictions
-        except Exception as e:
-            return f"Error during prediction: {e}"
+    #         predictions = self.model.predict(predict_data)
+    #         return predictions
+    #     except Exception as e:
+    #         return f"Error during prediction: {e}"
