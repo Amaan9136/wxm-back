@@ -7,7 +7,7 @@ PyPDF2
 Werkzeug==2.2.2
 Pillow
 googletrans
-numpy
-pandas
-scikit-learn
-matplotlib
+# numpy
+# pandas
+# scikit-learn
+# matplotlib
