@@ -6,7 +6,7 @@ openpyxl
 PyPDF2
 Werkzeug==2.2.2
 Pillow
-googletrans
+googletrans==4.0.0-rc1
 # using these takes 250MB +
 # numpy
 # pandas
