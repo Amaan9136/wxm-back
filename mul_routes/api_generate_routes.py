@@ -2,10 +2,10 @@ import json, os
 import secrets
 import string
 from flask import Blueprint, jsonify, request
+import tempfile
 
 api_model_bp = Blueprint('api_model_bp', __name__)
-
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/')
+UPLOAD_FOLDER = os.path.join(tempfile.gettempdir(), 'api.json')
 
 def generate_api_key(name, length=24):
     # Take the first three letters from the name
@@ -25,7 +25,7 @@ def generate_api_key(name, length=24):
 
 def load_existing_data():
     try:
-        with open(f'{UPLOAD_FOLDER}api.json', 'r') as file:
+        with open(UPLOAD_FOLDER, 'r') as file:
             return json.load(file)
     except FileNotFoundError:
         return []  # Return an empty list if the file does not exist
@@ -37,7 +37,7 @@ def save_to_api_json(name, email, api_key):
     existing_data.append({"name": name, "email": email, "generated_api_key": api_key})
 
     # Save back to the file
-    with open(f'{UPLOAD_FOLDER}api.json', 'w') as file:
+    with open(UPLOAD_FOLDER, 'w') as file:
         json.dump(existing_data, file, indent=4)
 
 def generate_and_save_api_key(name, email):
