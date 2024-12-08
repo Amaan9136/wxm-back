@@ -8,9 +8,9 @@ Werkzeug==2.2.2
 Pillow
 googletrans==4.0.0-rc1
 pyngrok
+numpy
 
 # using these takes 250MB +
-# numpy
 # pandas
 # scikit-learn
 # matplotlib
