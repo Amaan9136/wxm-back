@@ -1,1 +1,32 @@
+<script>
+      async function sendRequestToIming(event) {
+        event.preventDefault();
+        const prompt = document.getElementById("prompt").value;
+        const role = document.getElementById("role").value;
+        const api_key = document.getElementById("api_key").value;
+
+        const formData = new FormData();
+        formData.append("transcription", prompt);
+
+        const response = await fetch("/text-to-summary", {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await response.json();
+        document.getElementById("output").innerHTML = result.text;
+    }
+
+</script>
+
 <h1>WeXpert Meet Backend</h1>
+
+<h1>SEND REQUEST TO IMING MODEL</h1>
+<form onsubmit="sendRequestToIming(event)">
+    <input type="text" id="prompt" placeholder="Enter prompt" />
+    <button type="submit">Send Request</button>
+</form>
+
+<h1>Output</h1>
+<p>Response: <span id="output"></span></p>
+<hr>

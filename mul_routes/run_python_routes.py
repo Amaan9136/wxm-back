@@ -3,11 +3,11 @@ import subprocess
 import json
 import os
 import re
-import tempfile
 
-# Define constants for file paths
-VARIABLES_FILE = os.path.join(tempfile.gettempdir(), 'variables.json')
-FUNCTIONS_FILE = os.path.join(tempfile.gettempdir(), 'functions.py')
+# CHANGE PYTHON_ENV FOR THE LOCAL PYTHON 
+PYTHON_PATH = "C:/Users/Amaan M k/anaconda3/envs/gemini/python.exe"
+VARIABLES_FILE = 'backend/routes/store_python_data/variables.json'
+FUNCTIONS_FILE = 'backend/routes/store_python_data/functions.py'
 
 run_python_bp = Blueprint('run_python', __name__)
 
@@ -50,8 +50,8 @@ def execute_code(code):
     full_code = f"{load_vars_code}\n{functions}\n{code}"
 
     try:
-        # Execute the code using the default Python interpreter in Vercel
-        process = subprocess.Popen(['python', '-c', full_code], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+        # Execute the code in a subprocess
+        process = subprocess.Popen([PYTHON_PATH, '-c', full_code], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         output, error = process.communicate()
 
         if error:

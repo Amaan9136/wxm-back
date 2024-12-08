@@ -1,31 +1,14 @@
 cd D:\0 AMAAN MAIN\0 Codes\My NextJS\NextJS-Template1\backend\...
 
-file "Social_Network_Ads.csv"
-features 0 1
-target 2 
+// file
+file "Mall_Customers.csv"
+
+// split train and test
 split 0.2
-model "linear_regression"
-print_predict
-print_accuracy
-plot_data
-plot_predict
-save_model "model.pkl"
 
-// also add to download the "model.pkl" if you want in flask's interface
-
-// single command:
-file "Social_Network_Ads.csv" features 0 2 target 3 4 split 0.2 model "linear_regression" print_predict save_model "model.pkl"
-
-// arguments
-model "svc" C=1.0
-model "polynomial_regression" degree=3
-model "ridge_regression" alpha=0.5
-model "svc" C=10.0 kernel=rbf gamma=scale
-model "svc" C=2.0 kernel=linear
-model "knn" n_neighbors=8 metric=euclidean
-model "lasso_regression" alpha=0.1 max_iter=1000
-model "naive_bayes" 
-model "svr" C=0.5 kernel=linear epsilon=0.1
+// features and target
+features 1
+target 3
 
 // target take the column index (not range)
 target 2 
@@ -56,5 +39,47 @@ split 0.3
 model "svr"
 print_predict
 
-// make models to make predictions by model_predict
-model_predict "my_model" [[1, 2], [3, 4], [5, 6]]
+// models and arguments
+model "svc" C=1.0
+model "polynomial_regression" degree=3
+model "ridge_regression" alpha=0.5
+model "svc" C=10.0 kernel=rbf gamma=scale
+model "svc" C=2.0 kernel=linear
+model "knn" n_neighbors=8 metric=euclidean
+model "lasso_regression" alpha=0.1 max_iter=1000
+model "naive_bayes" 
+model "svr" C=0.5 kernel=linear epsilon=0.1
+
+// print statements
+print_predict
+print_acc
+print_mse
+print_mae
+print_cm
+print_r2
+
+// plot graphs
+plot_data
+plot_predict
+
+// save model
+save_model "model-name.pkl"
+
+//predict 
+model_predict "model-name" [[1, 2], [3, 4], [5, 6]]
+
+// general structure
+file "Social_Network_Ads.csv"
+features 0 1
+target 2 
+split 0.2
+model "linear_regression"
+print_predict
+print_accuracy
+plot_data
+plot_predict
+save_model "model.pkl"
+
+// single command line:
+file "Social_Network_Ads.csv" features 0 2 target 3 4 split 0.2 model "linear_regression" print_predict save_model "model.pkl"
+

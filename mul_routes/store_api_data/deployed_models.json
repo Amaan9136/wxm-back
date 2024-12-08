@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Amaan ",
+        "email": "23@gmail.com",
+        "title": "Google Bard",
+        "api_key": "HMxDB4cRLwamaZczl738lUne",
+        "description": "Why Model:\r\nThis model is used to predict {SOMETHING}.\r\n\r\nStructure of input:\r\nreceives numpy's 2D array [[Number1, Number2]] OR [[Number1, Number2], [Number3, Number4] ...]",
+        "model_path": "google-bard.pkl",
+        "path": "google-bard"
+    },
+    {
+        "name": "Amaan ",
+        "email": "23@gmail.com",
+        "title": "Google Bards",
+        "api_key": "HMxDB4cRLwamaZczl738lUne",
+        "description": "Why Google Bards:\r\nThis model is used to predict {SOMETHING}.\r\n\r\nStructure of input:\r\nreceives numpy's 2D array [[Number1, Number2]] OR [[Number1, Number2], [Number3, Number4] ...]",
+        "model_path": "google-bards.pkl",
+        "path": "google-bards"
+    },
+    {
+        "name": "Amaan MK",
+        "email": "syedkhalander66@gmail.com",
+        "title": "PositionSalaries",
+        "api_key": "IG8TZq9B4PamaZHNqcP9nUO0",
+        "description": "Why PositionSalaries:\r\nThis model is used to predict {SOMETHING}.\r\n\r\nStructure of input:\r\nreceives numpy's 2D array [[Number1, Number2]] OR [[Number1, Number2], [Number3, Number4] ...]",
+        "model_path": "positionsalaries.pkl",
+        "path": "positionsalaries"
+    }
+]
