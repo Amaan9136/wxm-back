@@ -12,7 +12,7 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn.compose import ColumnTransformer
 from .mul_cmd_models import MulCmdModels
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_mulcmd_data/uploads/')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_mulcmd_data/uploads/')
 
 class MulCmd:
     def __init__(self):

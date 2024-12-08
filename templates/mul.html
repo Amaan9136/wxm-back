@@ -67,11 +67,11 @@
         const formData = new FormData();
         formData.append('api_key', apiKey);
         formData.append('prompt', prompt);
-        formData.append('role', role);
+        formData.append('model_type', 'vision');
         formData.append('file', fileInput.files[0]);
 
         try {
-            const response = await fetch('/request_vision', {
+            const response = await fetch('/request_analyze_image', {
                 method: 'POST',
                 body: formData
             });
@@ -133,7 +133,6 @@
     <input type="text" id="api_key_2" name="api_key_2" placeholder="Enter API Key" required>
     <input type="file" id="file_2" name="file_2" accept="image/*" required>
     <input type="text" id="prompt_2" name="prompt_2" placeholder="Enter your prompt here" required>
-    <input type="text" id="role_2" name="role_2" placeholder="Enter your role here">
     <button type="submit">Submit</button>
 </form>
 <div class="response" id="responseContainer"></div>
@@ -152,9 +151,9 @@
 <pre id="outputText"></pre>
 
 <h2>Generated Files:</h2>
-<img src="/get_file/plot_data.png" alt="Dataset Plot">
-<img src="/get_file/plot_predict.png" alt="Prediction Plot">
-<a href="/get_file/trained_model.pkl" download>Download Model and Files</a>
+<img src="/get_file/mul/plot_data.png" alt="Dataset Plot">
+<img src="/get_file/mul/plot_predict.png" alt="Prediction Plot">
+<a href="/get_file/mul/datamodel.pkl" download>Download Model and Files</a>
 
 <script>
     function submitForm() {

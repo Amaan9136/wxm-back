@@ -24,13 +24,13 @@ from mul_routes.run_python_routes import run_python_bp
 from mul_routes.send_files_routes import send_files_bp
 from mul_routes.api_generate_routes import api_model_bp
 from mul_routes.request_model_routes import request_model_bp
-# from mul_routes.live_inference_routes import live_inference_bp
+from mul_routes.live_inference_routes import live_inference_bp
 # app.register_blueprint(run_mulcmd_bp)
 app.register_blueprint(run_python_bp)
 app.register_blueprint(send_files_bp)
 app.register_blueprint(api_model_bp)
 app.register_blueprint(request_model_bp)
-# app.register_blueprint(live_inference_bp)
+app.register_blueprint(live_inference_bp)
 
 @app.route('/')
 def index():

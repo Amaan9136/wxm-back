@@ -98,8 +98,8 @@ def screen_shot():
 def start_recording():
     global recording_started
     if not recording_started:
-        video_output_file = 'backend/records/videoRecords/output.mp4'
-        audio_output_file = 'backend/records/audioRecords/output.wav'
+        video_output_file = 'wxm_routes/records/videoRecords/output.mp4'
+        audio_output_file = 'wxm_routes/records/audioRecords/output.wav'
         threading.Thread(target=start_video_and_audio_recording, args=(video_output_file, audio_output_file)).start()
         return 'Video and Audio recording started'
     else:
@@ -111,9 +111,9 @@ def stop_recording():
     global recording_started
     if recording_started:
         recording_started = False
-        video_output_file = 'backend/records/videoRecords/output.mp4'
-        audio_output_file = 'backend/records/audioRecords/output.wav'
-        output_combined_file = 'backend/records/combinedRecords/output_combined.mp4'
+        video_output_file = 'wxm_routes/records/videoRecords/output.mp4'
+        audio_output_file = 'wxm_routes/records/audioRecords/output.wav'
+        output_combined_file = 'wxm_routes/records/combinedRecords/output_combined.mp4'
         combine_audio_video(video_output_file, audio_output_file, output_combined_file)
         
         # remove folders after call has been ended
@@ -128,9 +128,9 @@ def stop_recording():
 @video_routes.route('/download-video', methods=['GET'])
 def download_video():
     try:
-        video_path = 'backend/records/combinedRecords/output_combined.mp4'
-        video_output_file = 'backend/records/videoRecords/output.mp4'
-        audio_output_file = 'backend/records/audioRecords/output.wav'
+        video_path = 'wxm_routes/records/combinedRecords/output_combined.mp4'
+        video_output_file = 'wxm_routes/records/videoRecords/output.mp4'
+        audio_output_file = 'wxm_routes/records/audioRecords/output.wav'
         while os.path.exists(video_output_file) or os.path.exists(audio_output_file):
             time.sleep(1)  
         if not os.path.exists(video_path):

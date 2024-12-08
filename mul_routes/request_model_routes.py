@@ -13,7 +13,7 @@ load_dotenv()
 
 request_model_bp = Blueprint('request_model_bp', __name__)
 genai.configure(api_key=os.getenv("MODEL"))
-UPLOAD_API_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_api_data/')
+UPLOAD_API_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/')
 
 def validate_api_key(api_key):
     """Loads existing API key data from api.json and validates the provided API key."""
@@ -189,7 +189,7 @@ def request_generate_image():
             return jsonify({"error": f"API request failed with status {response.status_code}: {response.text}"}), 500
 
         # Save the generated image
-        output_directory = os.path.join(os.getcwd(), 'backend/routes/store_gen_img/')
+        output_directory = os.path.join(os.getcwd(), 'mul_routes/store_gen_img/')
         os.makedirs(output_directory, exist_ok=True)
 
         # Use a more appropriate filename

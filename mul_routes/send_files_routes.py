@@ -7,10 +7,10 @@ send_files_bp = Blueprint('send_files', __name__)
 # To get a file from api folder: /get_file/api/yourfile.txt
 # To get a image from store_gen_img folder: /get_file/gen_img/{image_name_with_extension}
 
-STORE_MUL_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_mulcmd_data/uploads/')
-STORE_API_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_api_data/')
-STORE_MODEL_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_api_data/models')
-STORE_GEN_IMAGE = os.path.join(os.getcwd(), 'backend/routes/store_gen_img/')
+STORE_MUL_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_mulcmd_data/uploads/')
+STORE_API_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/')
+STORE_MODEL_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/models')
+STORE_GEN_IMAGE = os.path.join(os.getcwd(), 'mul_routes/store_gen_img/')
 
 @send_files_bp.route('/get_file/<folder_type>/<filename>', methods=['GET'])
 

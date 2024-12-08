@@ -67,5 +67,5 @@ def download_notes():
 # remove notes folder after call has been ended
 @files_routes.route('/remove-notes')
 def remove_notes():
-    shutil.rmtree('backend/uploads/notes')
+    shutil.rmtree('wxm_routes/uploads/notes')
     return jsonify({'message': 'Removed All Files.'}), 200

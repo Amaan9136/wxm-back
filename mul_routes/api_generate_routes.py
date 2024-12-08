@@ -7,7 +7,7 @@ from flask import Blueprint, jsonify, request
 
 api_model_bp = Blueprint('api_model_bp', __name__)
 
-UPLOAD_FOLDER = os.path.join(os.getcwd(), 'backend/routes/store_api_data/')
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'mul_routes/store_api_data/')
 
 def load_existing_data(path):
     try:
